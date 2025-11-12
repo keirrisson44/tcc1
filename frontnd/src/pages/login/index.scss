@@ -1,0 +1,132 @@
+.login-container {
+    margin-top: 30px;
+    border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  width: 500px;
+  background-color: #002b80; 
+  font-family: "Poppins", sans-serif;
+
+
+
+.login-content {
+  display: flex;
+  background-color: #f8f9fc;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+  width: 900px;
+  max-width: 95%;
+  height: 500px;
+}
+
+.tab{
+    margin-left: 116px;
+}
+
+.right-side {
+  flex: 0.8;
+  background: linear-gradient( #00bcd4, #2196f3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+  color: white;
+  text-align: center;
+  padding: 20px 40px;
+}
+
+.right-side h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.icon {
+  width: 65px;
+  margin: 10px 0 20px;
+  margin-left: 106px;
+}
+
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: 300px;
+  max-width: 260px;
+}
+
+.inputs label {
+  font-size: 14px;
+  color: white;
+  font-weight: 500;
+}
+
+.inputs input {
+  width: 100%;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 25px;
+  background-color: #ffffff;
+  color: #000;
+  font-size: 14px;
+  outline: none;
+
+  &:focus {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+  }
+}
+
+
+button {
+  background: linear-gradient(to right, #00bcd4, #2196f3);
+  border: none;
+  border-radius: 25px;
+  padding: 10px 35px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 20px;
+  margin-left: 80px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .login-content {
+    flex-direction: column;
+    height: auto;
+    width: 90%;
+  }
+
+  .right-side {
+    border-radius: 0;
+    padding: 30px;
+  }
+
+  .left-side {
+    padding: 20px;
+    justify-content: center;
+  }
+
+  .left-side img {
+    width: 120px;
+  }
+}
+.mensagem{
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+  margin-left: 15px;
+}
+}

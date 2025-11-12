@@ -1,0 +1,12 @@
+# Ignorar dependências
+node_modules/
+npm-debug.log
+.env
+
+# Ignorar build do React
+dist/
+build/
+
+# Ignorar arquivos de sistema
+.DS_Store
+Thumbs.db

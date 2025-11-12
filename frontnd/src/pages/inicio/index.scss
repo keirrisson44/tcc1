@@ -1,0 +1,88 @@
+.inicio{
+  background-color: #0b3d91;
+  width: 900px;
+  height: 1600px;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  color: white;
+  position: relative;
+  margin-top: 20px;
+
+  .logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    img {
+      width: 200px;
+      height: auto;
+    }
+
+    .saida {
+      background-color: rgb(136, 7, 7);
+      color: white;
+      font-size: 20px;
+      border: none;
+      border-radius: 12px;
+      padding: 25px 30px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #b80000;
+      transform: scale(1.05);
+    }
+    }
+  }
+.introducao{
+    display: flex;
+}
+
+  .imagemIntroducao{
+    background-color: #fff; 
+  border-radius: 50%; 
+  padding: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 220px; 
+  height: 220px;
+  margin-left: 600px;
+  margin-top: -20px;
+}
+.chamado{
+   margin-top: -245px;
+   font-size: 20px;
+}
+.chamado2{
+    margin-top: 30px;
+    font-size: 20px;
+    margin-bottom: 180px;
+}
+.denuncia{
+    background-color: #F6C65B;
+    color: #000000;
+    font-size: 20px;
+    border: none;
+    border-radius: 12px;
+      padding: 25px 30px;
+      font-weight: bold;
+      cursor: pointer;
+}
+.textoo2{
+    margin-top: 70px;
+}
+.titulo{
+    color: #F6C65B;
+    text-shadow: 2px 2px 5px black;
+}
+.textoo3{
+    margin-top: 70px;
+    margin-bottom: 50px;
+}
+}
+
+
