@@ -2,7 +2,7 @@
 
   background-color: #0B3D91;
   width: 500px;
-  height: 2500px;
+  height: 2100px;
   border: 2px solid #fff;
   border-radius: 8px;
   padding: 20px;
@@ -223,6 +223,18 @@
     width: calc(100% - 32px);
   }
   .logo img { width: 140px; }
+}
+.erro {
+  color: #ff4d4d;
+  font-size: 13px;
+  margin-top: 4px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+.mensagem {
+  margin-top: 20px;
+  font-weight: bold;
+  color: #28a745;
 }
 
 

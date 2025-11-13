@@ -1,10 +1,13 @@
-import { adicionarRotas } from './rotas.js';
+import express from "express";
+import cors from "cors";
+import usuarioController from "./controller/UsuarioController.js";
 
-import express from "express"
 const api = express();
-api.use(express.json()); 
 
-adicionarRotas(api);
+api.use(cors({ origin: "http://localhost:5173" }));
+api.use(express.json());
 
-api.listen(5173, () => console.log('API subiu com sucesso!'));
 
+api.use(usuarioController);
+
+api.listen(5000, () => console.log("API subiu com sucesso!"));

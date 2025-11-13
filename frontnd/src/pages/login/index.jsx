@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; 
 import api from "../../api";
 import "./index.scss";
 
@@ -6,6 +7,8 @@ export default function Login() {
   const [usuario, setUsuario] = useState("");
   const [senha, setSenha] = useState("");
   const [mensagem, setMensagem] = useState("");
+
+  const navigate = useNavigate();  
 
   async function entrar(e) {
     e.preventDefault(); 
@@ -19,9 +22,11 @@ export default function Login() {
       console.log(resposta.data);
       setMensagem(resposta.data.mensagem || "Login realizado com sucesso!");
 
-     
       if (resposta.data.token) {
         localStorage.setItem("token", resposta.data.token);
+
+      
+        navigate("/inicio");
       }
 
     } catch (err) {
@@ -32,8 +37,6 @@ export default function Login() {
 
   return (
     <div className="login-container">
-    
-
       <div className="form-box">
         <div className="tab">Login</div>
         <img src="./image/image 20.png" alt="Cadeado" className="icon" />
@@ -64,7 +67,7 @@ export default function Login() {
           </div>
         </form>
 
-        { mensagem && <p className="mensagem">{mensagem}</p>}
+        {mensagem && <p className="mensagem">{mensagem}</p>}
       </div>
     </div>
   );
