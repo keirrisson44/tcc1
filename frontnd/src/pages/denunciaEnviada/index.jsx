@@ -5,9 +5,8 @@ export default function DenunciaEnviada() {
 
   const location = useLocation();
 
-
   const protocolo = location.state?.protocolo || "—";
-  const bairro = location.state?.bairro || "Cidade/Bairro";
+  const instituicoes = location.state?.instituicoes || [];
 
   function sairRapido() {
     window.location.href = "https://www.google.com";
@@ -37,8 +36,7 @@ export default function DenunciaEnviada() {
         <br />
         Lembre-se: você não está sozinha.
         <br />
-        Veja abaixo instituições que podem te oferecer apoio psicológico,
-        jurídico e social.
+        Veja abaixo instituições próximas que podem oferecer ajuda.
       </div>
 
       <div className="subtitulo">
@@ -46,29 +44,14 @@ export default function DenunciaEnviada() {
       </div>
 
       <div className="instituicoes">
-        <div className="instituicao">
-          <h4>Instituto Maria da Penha</h4>
-          <p>{bairro}</p>
-          <span>(11) 98609-6720</span>
-        </div>
-
-        <div className="instituicao">
-          <h4>Casa da Mulher Brasileira</h4>
-          <p>{bairro}</p>
-          <span>(11) 98555-4411</span>
-        </div>
-
-        <div className="instituicao">
-          <h4>Centro de Referência da Mulher</h4>
-          <p>{bairro}</p>
-          <span>(11) 97222-1144</span>
-        </div>
-
-        <div className="instituicao">
-          <h4>Rede Feminina de Combate à Violência</h4>
-          <p>{bairro}</p>
-          <span>(11) 97444-9988</span>
-        </div>
+        {instituicoes.map((inst, index) => (
+          <div className="instituicao" key={index}>
+            <h4>{inst.nome}</h4>
+            <p><strong>Bairro procurado:</strong> {inst.bairroPesquisado}</p>
+            <p><strong>Endereço:</strong> {inst.endereco}</p>
+            <span><strong>Telefone:</strong> {inst.telefone}</span>
+          </div>
+        ))}
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../../api"; 
+import api from "../../api";
 import "./index.scss";
 
 export default function Denuncia2() {
@@ -44,6 +44,7 @@ export default function Denuncia2() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+
     const errosValidados = validarCampos();
     if (Object.keys(errosValidados).length > 0) {
       setErros(errosValidados);
@@ -51,9 +52,10 @@ export default function Denuncia2() {
     }
 
     try {
-      const token = localStorage.getItem("token"); // token do login
+      const token = localStorage.getItem("token");
+
       const resposta = await api.post(
-        "/adicionar",
+        "/vitima/adicionar",
         {
           nome_completo: form.nome,
           telefone_email: form.contato,
@@ -75,16 +77,17 @@ export default function Denuncia2() {
         }
       );
 
-      setMensagem("Denúncia registrada com sucesso!");
-      console.log("✅ ID novo:", resposta.data.novoId);
+      console.log("ID gerado:", resposta.data.novoId);
 
-      // Gera número de protocolo único (6 dígitos)
+      setMensagem("Denúncia registrada com sucesso!");
+
+      // Protocolo aleatório de 6 dígitos
       const protocolo = Math.floor(100000 + Math.random() * 900000);
 
-      // Redireciona para a página de confirmação com os dados
       navigate("/denunciaEnviada", {
         state: { protocolo, bairro: form.bairro },
       });
+
     } catch (err) {
       console.error("Erro ao enviar denúncia:", err);
       setMensagem("Erro ao enviar denúncia. Tente novamente.");
@@ -99,16 +102,19 @@ export default function Denuncia2() {
       </div>
 
       <h1 className="ww">Registro de Violência Doméstica Contra a Mulher</h1>
+
       <p>
         A violência doméstica ocorre quando a mulher é vítima de qualquer ato ou
         omissão que cause morte, lesão, sofrimento físico, sexual, psicológico ou
-        dano moral e patrimonial, dentro do lar, da família ou em relações afetivas.
+        dano moral e patrimonial.
       </p>
 
       <h3 className="we">Dados da vítima</h3>
 
       <form onSubmit={handleSubmit}>
         <div className="denunciaa">
+
+          {/* DADOS DA VÍTIMA */}
           <div className="dados-da-vitima">
             <h3>Nome completo</h3>
             <input
@@ -150,6 +156,7 @@ export default function Denuncia2() {
             />
           </div>
 
+          {/* ENDEREÇO */}
           <div className="Endereco">
             <h3>CEP</h3>
             <input
@@ -192,18 +199,10 @@ export default function Denuncia2() {
             {erros.numero && <p className="erro">{erros.numero}</p>}
           </div>
 
-          <div className="dados-agressor">
-            <h3 className="h33">Dados do agressor (opcional)</h3>
-            <h3>Nome (se souber):</h3>
-            <input className="oii" type="text" />
-            <h3>Relação com a vítima:</h3>
-            <input className="oii" type="text" />
-            <h3>Endereço</h3>
-            <input className="oii" type="text" />
-          </div>
-
+        
           <div className="detalhes-do-ocorrido">
             <h3 className="h33">Detalhes da ocorrência</h3>
+
             <h3>Descrição do ocorrido:</h3>
             <input
               className="oii"
@@ -233,6 +232,7 @@ export default function Denuncia2() {
 
             {mensagem && <p className="mensagem">{mensagem}</p>}
           </div>
+
         </div>
       </form>
     </div>
