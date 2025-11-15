@@ -6,14 +6,19 @@ export default function App() {
 
  const navigate = useNavigate();
 
+   function sairRapido() {
+    window.location.href = "https://www.google.com";
+  }
+
   return (
 
     <div className='inicio'>
 
        <div className="logo">
         <img src="image/elas.png" alt="Logo Luz por Elas" />
-        <button className="saida">Saída rápida</button>
-
+         <button className="saida" onClick={sairRapido}>
+        saída rápida
+      </button>
       </div>
 
       <br /><br /><br /><br />
@@ -68,7 +73,7 @@ export default function App() {
      <Rodape
     titulo1="Serviços Disponíveis"
     linkUrl="/complementar"
-    linkUrl2="/"
+    linkUrl2="/consultarboletim"
     titulo2="contato"
     insta="luzporelas@gmail.com"
     img1="image/likdin.png"

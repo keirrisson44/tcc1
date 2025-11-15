@@ -1,23 +1,40 @@
-import * as repo from "../repository/VitimaRepository.js"
+
 import { Router } from "express";
-import { getAuthentication } from "../utils/jwt.js";
+import * as repo from "../repository/VitimaRepository.js";
+import jwt from "jsonwebtoken";
 
-const endpoints = Router();
-const autenticador = getAuthentication();
+const router = Router();
+const SECRET_KEY = "SUA_CHAVE_SECRETA"; 
 
-endpoints.post('/adicionar', autenticador, async (req, resp) => {
+
+function verificarToken(req, res, next) {
+  const authHeader = req.headers["authorization"];
+  if (!authHeader) return res.status(401).send({ erro: "Token não fornecido" });
+
+  const token = authHeader.split(" ")[1]; 
+  if (!token) return res.status(401).send({ erro: "Token inválido" });
+
+  jwt.verify(token, SECRET_KEY, (err, decoded) => {
+    if (err) return res.status(403).send({ erro: "Token expirado ou inválido" });
+    req.usuario = decoded; 
+    next();
+  });
+}
+
+
+router.post("/adicionar", verificarToken, async (req, res) => {
   try {
-    let novavitima = req.body;
+    const novaVitima = req.body;
 
-    console.log("Recebido do front:", novavitima);
+ 
 
-    let id = await repo.inserirvitima(novavitima);
+    const novoId = await repo.inserirvitima(novaVitima);
 
-    resp.send({ novoId: id });
+    res.send({ novoId, mensagem: "Denúncia registrada com sucesso!" });
   } catch (err) {
-    console.error("ERRO AO INSERIR VÍTIMA:", err);
-    resp.status(500).send({ erro: err.message });
+    console.error("Erro ao adicionar vítima:", err);
+    res.status(500).send({ erro: "Erro ao registrar denúncia" });
   }
 });
 
-export default endpoints;
+export default router;

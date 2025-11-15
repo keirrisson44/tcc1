@@ -8,13 +8,19 @@ export default function Denuncia1() {
   
  const navigate = useNavigate();
 
+   function sairRapido() {
+    window.location.href = "https://www.google.com";
+  }
+
     return (
         <div className='Denuncia'>
 
         <div className="logo">
 
         <img src="image/elas.png" alt="Logo Luz por Elas" />
-        <button className="saida">Saída rápida</button>
+        <button className="saida" onClick={sairRapido}>
+        saída rápida
+      </button>
 
       </div>
 

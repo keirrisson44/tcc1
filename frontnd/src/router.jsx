@@ -6,6 +6,7 @@ import Denuncia2 from './pages/denuncia2/index.jsx';
 import DenunciaEnviada from './pages/denunciaEnviada/index.jsx';
 import Adimin from './pages/adimin/index.jsx';
 import Login from './pages/login/index.jsx';
+import Consultar from './pages/consultarboletim/index.jsx';
 
 export default function Navegacao() {
 
@@ -17,6 +18,7 @@ export default function Navegacao() {
         <Route path='/denuncia1' element={ <Denuncia1/> } />
         <Route path='/denuncia2' element={ <Denuncia2/> } />
         <Route path='/denunciaEnviada' element={ <DenunciaEnviada/>} />
+        <Route path='/consultarboletim' element={< Consultar/> } />
         <Route path='/complementar' element={ <Complementar/>} />
         <Route path='/Adimin' element={ <Adimin/>} />
         </Routes>

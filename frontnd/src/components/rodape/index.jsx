@@ -8,7 +8,7 @@ export default function Rodape({ titulo1, titulo2, linkUrl, linkUrl2,  insta, im
         <div className='coluna'>
           <h3>{titulo1}</h3>
           <Link to={linkUrl} className='Linkk'>complementar boletim</Link>
-          <Link to={linkUrl2} className='Linkk'>acompanhar andamento</Link>
+          <Link to={linkUrl2} className='Linkk'>Consultar boletim</Link>
         </div>
 
         <div className='linha'></div>

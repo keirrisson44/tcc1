@@ -2,24 +2,23 @@ import express from 'express';
 import AgressorController from "./controller/AgressorController.js";
 import OcorrenciaController from "./controller/OcorrenciaController.js";
 import VitimaController from "./controller/VitimaController.js";
+import UsuarioController from "./controller/UsuarioController.js";
 import axios from "axios";
 
 export function adicionarRotas(api) {
 
-  
+
   api.use('/agressor', AgressorController);
   api.use('/ocorrencia', OcorrenciaController);
   api.use('/vitima', VitimaController);
-
+  api.use('/usuario', UsuarioController); 
   api.use('/public/storage', express.static('public/storage'));
-
 
   const GOOGLE_API_KEY = "SUA_API_KEY_AQUI";   
 
   api.get("/instituicoes-proximas", async (req, res) => {
     try {
       const bairro = req.query.bairro;
-
       if (!bairro)
         return res.status(400).send({ erro: "Bairro é obrigatório" });
 
@@ -34,13 +33,11 @@ export function adicionarRotas(api) {
       );
 
       const location = geo.data.results[0]?.geometry.location;
-
       if (!location)
         return res.status(404).send({ erro: "Localização não encontrada" });
 
       const { lat, lng } = location;
 
- 
       const places = await axios.get(
         "https://maps.googleapis.com/maps/api/place/nearbysearch/json",
         {

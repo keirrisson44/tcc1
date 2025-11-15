@@ -1,0 +1,159 @@
+.Consultar{
+margin-top: 40px;
+
+$cor-primaria: #002b80;
+$cor-secundaria: #f8f9fc;
+$cor-borda: #ccc;
+$cor-fundo-card: #fff;
+$cor-texto: #333;
+$cor-botao: #0b3d91;
+$cor-botao-hover: darken($cor-botao, 10%);
+
+
+div {
+  font-family: "Poppins", sans-serif;
+}
+
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: $cor-primaria;
+  color: white;
+
+  img {
+    height: 100px;
+  }
+
+  .menu-container {
+    position: relative;
+
+    .menu-btn {
+      background-color: transparent;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .menu {
+      position: absolute;
+      right: 0;
+      top: 100%;
+      background-color: $cor-secundaria;
+      display: none;
+      flex-direction: column;
+      min-width: 150px;
+      border: 1px solid $cor-borda;
+      border-radius: 4px;
+      z-index: 100;
+
+      a {
+        padding: 10px;
+        text-decoration: none;
+        color: $cor-texto;
+
+        &:hover {
+          background-color: lighten($cor-primaria, 40%);
+        }
+      }
+    }
+
+    .menu.show {
+      display: flex;
+    }
+  }
+}
+
+.cards {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+
+  .card {
+    background-color: $cor-fundo-card;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    min-width: 150px;
+
+    h2 {
+      margin: 0;
+      font-size: 24px;
+      color: $cor-primaria;
+    }
+
+    p {
+      margin: 5px 0 0 0;
+      color: $cor-texto;
+    }
+  }
+}
+
+.tabela {
+  margin: 20px;
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+
+    th, td {
+      border: 1px solid $cor-borda;
+      padding: 10px;
+    }
+
+    th {
+      background-color: $cor-primaria;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: lighten($cor-primaria, 50%);
+    }
+
+    .btn {
+      background-color: $cor-botao;
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $cor-botao-hover;
+      }
+    }
+  }
+}
+
+
+.filtros {
+  margin: 20px;
+  display: flex;
+  gap: 10px;
+
+  input {
+    padding: 5px 10px;
+    border: 1px solid $cor-borda;
+    border-radius: 4px;
+    flex: 1;
+  }
+
+  button {
+    padding: 5px 10px;
+    border: none;
+    background-color: $cor-botao;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $cor-botao-hover;
+    }
+  }
+}
+
+}

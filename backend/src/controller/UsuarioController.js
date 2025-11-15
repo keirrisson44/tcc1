@@ -1,46 +1,24 @@
 import { Router } from "express";
-import { generateToken } from "../utils/jwt.js";
-import { InserirUsuario, ValidarCredenciais } from "../repository/UsuarioRepository.js";
+import * as repo from "../repository/UsuarioRepository.js";
+import jwt from "jsonwebtoken";
 
-const endpoints = Router();
+const router = Router();
+const SECRET_KEY = "SUA_CHAVE_SECRETA";
 
-endpoints.post('/criar/conta', async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
-    const dados = req.body;
-    const resposta = await InserirUsuario(dados);
-    res.status(201).send({ id: resposta });
+    const { email, senha } = req.body; // front envia email, mas na tabela é usuario_adm
+
+    const usuario = await repo.buscarUsuarioPorEmailESenha(email, senha); // email aqui é na verdade usuario_adm
+    if (!usuario) return res.status(401).send({ erro: "Usuário ou senha inválidos" });
+
+    const token = jwt.sign({ id: usuario.id_login, usuario: usuario.usuario_adm }, SECRET_KEY, { expiresIn: "1h" });
+
+    res.send({ mensagem: "Login realizado com sucesso", token });
   } catch (err) {
-    console.error(err);
-    res.status(500).send({ erro: "Erro ao criar conta." });
+    console.error("ERRO LOGIN:", err);
+    res.status(500).send({ erro: "Erro ao autenticar usuário" });
   }
 });
 
-endpoints.post('/login', async (req, res) => {
-  try {
-    const { email, senha } = req.body;
-
-    const resultado = await ValidarCredenciais(email, senha);
-
-    if (resultado.length === 0) {
-      return res.status(401).send({ mensagem: "Usuário ou senha incorretos!" });
-    }
-
-    const usuario = resultado[0];
-
-    const token = generateToken({
-      id: usuario.id_login,
-      usuario: usuario.usuario_adm
-    });
-
-    res.send({
-      mensagem: "Usuário logado com sucesso!",
-      token
-    });
-
-  } catch (err) {
-    console.error(err);
-    res.status(500).send({ erro: "Erro no servidor." });
-  }
-});
-
-export default endpoints;
+export default router;

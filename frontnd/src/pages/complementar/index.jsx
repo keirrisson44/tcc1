@@ -1,11 +1,18 @@
 import './index.scss';
 
 export default function Complementar() {
+
+     function sairRapido() {
+    window.location.href = "https://www.google.com";
+  }
+
   return (
     <div className="container">
       <div className="logo">
         <img src="image/elas.png" alt="Logo Luz por Elas" />
-        <button className="saida">Saída rápida</button>
+        <button className="saida" onClick={sairRapido}>
+        saída rápida
+      </button>
       </div>
 
       <h1>Complementar boletim</h1>

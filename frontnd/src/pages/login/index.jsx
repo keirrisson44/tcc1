@@ -14,7 +14,7 @@ export default function Login() {
     e.preventDefault(); 
 
     try {
-      const resposta = await api.post("/login", {
+      const resposta = await api.post("/usuario/login", {
         email: usuario,
         senha: senha,
       });

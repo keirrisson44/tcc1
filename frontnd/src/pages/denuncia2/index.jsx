@@ -81,7 +81,7 @@ export default function Denuncia2() {
 
       setMensagem("Denúncia registrada com sucesso!");
 
-      // Protocolo aleatório de 6 dígitos
+   
       const protocolo = Math.floor(100000 + Math.random() * 900000);
 
       navigate("/denunciaEnviada", {
@@ -94,11 +94,17 @@ export default function Denuncia2() {
     }
   }
 
+   function sairRapido() {
+    window.location.href = "https://www.google.com";
+  }
+
   return (
     <div className="denuncia2">
       <div className="logo">
         <img src="image/elas.png" alt="Logo Luz por Elas" />
-        <button className="saida">Saída rápida</button>
+        <button className="saida" onClick={sairRapido}>
+        saída rápida
+      </button>
       </div>
 
       <h1 className="ww">Registro de Violência Doméstica Contra a Mulher</h1>
@@ -114,7 +120,6 @@ export default function Denuncia2() {
       <form onSubmit={handleSubmit}>
         <div className="denunciaa">
 
-          {/* DADOS DA VÍTIMA */}
           <div className="dados-da-vitima">
             <h3>Nome completo</h3>
             <input
@@ -156,7 +161,7 @@ export default function Denuncia2() {
             />
           </div>
 
-          {/* ENDEREÇO */}
+  
           <div className="Endereco">
             <h3>CEP</h3>
             <input

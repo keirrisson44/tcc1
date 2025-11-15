@@ -1,19 +1,10 @@
 import { conection } from "./conection.js";
 
-export async function InserirUsuario(NovosDados) {
-  let [resultados] = await conection.query(
-    `INSERT INTO login (usuario_adm, senha_adm)
-     VALUES (?, ?)`, 
-    [NovosDados.usuario_adm, NovosDados.senha_adm]
-  );
-  return resultados.insertId;
-}
-
-export async function ValidarCredenciais(email, senha) {
-  let [resultados] = await conection.query(
-    `SELECT * FROM login 
-     WHERE usuario_adm = ? AND senha_adm = ?`,
-    [email, senha]
-  );
-  return resultados;
+export async function buscarUsuarioPorEmailESenha(usuario, senha) {
+  const comando = `
+    SELECT id_login, usuario_adm FROM login
+    WHERE usuario_adm = ? AND senha_adm = ?;
+  `;
+  const [resultado] = await conection.query(comando, [usuario, senha]);
+  return resultado[0]; 
 }
