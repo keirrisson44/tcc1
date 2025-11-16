@@ -7,13 +7,15 @@ import DenunciaEnviada from './pages/denunciaEnviada/index.jsx';
 import Adimin from './pages/adimin/index.jsx';
 import Login from './pages/login/index.jsx';
 import Consultar from './pages/consultarboletim/index.jsx';
+import Cadastrar from './pages/Cadastrar/index.jsx';
 
 export default function Navegacao() {
 
     return(
         <BrowserRouter>
         <Routes>
-        <Route path='/' element={ <Login/>} />    
+        <Route path='/' element={ <Login/>} />
+        <Route path='Cadastrar' element={ <Cadastrar/> } />  
         <Route path='/inicio' element={ <App/> } />
         <Route path='/denuncia1' element={ <Denuncia1/> } />
         <Route path='/denuncia2' element={ <Denuncia2/> } />

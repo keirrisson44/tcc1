@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom"; 
 import api from "../../api";
 import "./index.scss";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const [usuario, setUsuario] = useState("");
@@ -15,7 +16,7 @@ export default function Login() {
 
     try {
       const resposta = await api.post("/usuario/login", {
-        email: usuario,
+        usuario: usuario,
         senha: senha,
       });
 
@@ -34,9 +35,15 @@ export default function Login() {
       setMensagem("Usuário ou senha incorretos!");
     }
   }
+     function sairRapido() {
+    window.location.href = "https://www.google.com";
+  }
 
   return (
     <div className="login-container">
+       <button className="saida" onClick={sairRapido}>
+        saída rápida
+      </button>
       <div className="form-box">
         <div className="tab">Login</div>
         <img src="./image/image 20.png" alt="Cadeado" className="icon" />
@@ -63,11 +70,13 @@ export default function Login() {
               required
             />
 
-            <button type="submit">ENTRAR</button>
+            <button className="button" type="submit">ENTRAR</button>
           </div>
         </form>
 
         {mensagem && <p className="mensagem">{mensagem}</p>}
+
+        <Link className="cadastroo" to={"/Cadastrar"}>Cadastre-se agora</Link>
       </div>
     </div>
   );
